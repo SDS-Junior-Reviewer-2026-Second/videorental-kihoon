@@ -70,8 +70,21 @@ public class CustomerTest {
 
 
     private static Rental createRentalFor(int priceCode, int daysRented) {
-        Movie movie = new Movie(TITLE, priceCode);
+        Movie movie = getMovie(priceCode);
         Rental rental = new Rental(movie, daysRented);
         return rental;
+    }
+
+    private static Movie getMovie(int priceCode) {
+        switch(priceCode){
+            case Movie.REGULAR:
+                return new RegularMovie(TITLE);
+            case Movie.NEW_RELEASE:
+                return new NewReleaseMovie(TITLE);
+            case Movie.CHILDRENS:
+                return new ChildrenMovie(TITLE);
+            default:
+                return null;
+        }
     }
 }
